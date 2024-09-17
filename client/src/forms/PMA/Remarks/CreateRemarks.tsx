@@ -12,7 +12,7 @@ import { IoImage } from "react-icons/io5";
 import { FaVideo } from "react-icons/fa6";
 import InputSelect from "../../../components/input/InputSelect";
 import RemarksType from "../../../config/enum/RemarkType";
-import SelectArray from "../../../interface/SelectArray";
+import {SelectArray} from "../../../interface/SelectArray";
 
 export default function CreateRemarks(props: {
   open?: boolean;

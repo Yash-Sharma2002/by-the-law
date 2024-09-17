@@ -4,7 +4,7 @@ import Roles from "../../../config/enum/Roles";
 import ModalComponent from "../../../components/ui/Modal";
 import InputSelect from "../../../components/input/InputSelect";
 import assignLawyers from "../../../functions/projects/resource/assignDesigners";
-import SelectArray from "../../../interface/SelectArray";
+import {SelectArray} from "../../../interface/SelectArray";
 import { getByRole } from "../../../functions/SecurityUserRole/getByRole";
 
 export default function AssignDesignManager(props: {

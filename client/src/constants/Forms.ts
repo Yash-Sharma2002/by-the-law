@@ -1,4 +1,4 @@
-import SelectArray from "../interface/SelectArray";
+import {SelectArray} from "../interface/SelectArray";
 
 export const Forms: SelectArray[] = [
   {

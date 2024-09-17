@@ -1,9 +1,10 @@
+// import EmailParams 
+import NumberSeries from "../../forms/SystemAdmin/NumberSeries/NumberSeries";
 import MenuInterface from "../../interface/Menu";
 import DisplayType from "../enum/DisplayType";
 import Roles from "../enum/Roles";
-import UserGroup from "../../forms/SystemAdmin/Users/UserGroup/UserGroup";
-import NumberSeries from "../../forms/SystemAdmin/Sequence/NumberSeries";
 import List from "../../forms/SystemAdmin/Users/User/List";
+import BusinessUnit from "../../forms/SystemAdmin/BusinessUnit/BusinessUnit";
 
 const SystemAdmin: MenuInterface = {
   name: "System Administration",
@@ -21,6 +22,20 @@ const SystemAdmin: MenuInterface = {
           path: "/number-series",
           type: DisplayType.Form,
           Object: <NumberSeries />,
+        },
+        // {
+        //   name: "Email Parameters",
+        //   roles: [Roles.Admin],
+        //   path: "/email-parameters",
+        //   type: DisplayType.Form,
+        //   Object: <EmailParams />,
+        // },
+        {
+          name: "Business Unit",
+          roles: [Roles.Admin],
+          type: DisplayType.Form,
+          path: "/business-unit",
+          Object: <BusinessUnit />,
         }
       ],
     },
@@ -34,18 +49,15 @@ const SystemAdmin: MenuInterface = {
           path: "/users",
           type: DisplayType.Form,
           roles: [Roles.Admin],
-
           Object: <List />,
         },
-        {
-          name: "User Groups",
-          path: "/users-groups",
-          type: DisplayType.Form,
-          roles: [Roles.Admin],
-
-          Object: <UserGroup />,
-        },
-
+        // {
+        //   name: "New User",
+        //   roles: [Roles.Admin],
+        //   path: "/new-user",
+        //   type: DisplayType.Form,
+        //   Object: <NewUser />,
+        // },
       ],
     },
   ],

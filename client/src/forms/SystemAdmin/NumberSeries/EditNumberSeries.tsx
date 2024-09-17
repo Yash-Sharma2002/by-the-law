@@ -10,7 +10,7 @@ import InputSelect from "../../../components/input/InputSelect";
 import getTables from "../../../functions/number-series/getTables";
 import toTitle from "../../../functions/toTitle";
 import updateSeries from "../../../functions/number-series/updateSeries";
-import SelectArray from "../../../interface/SelectArray";
+import { SelectArray } from "../../../interface/SelectArray";
 
 type Props = {
   close?: () => void;
@@ -30,7 +30,7 @@ export default function EditNumberSeries(props: Props) {
   } = React.useContext(AppContext);
 
   const [seqFor, setSeqFor] = React.useState<SelectArray[]>([]);
-  const getAllSequence = React.useRef(() => {});
+  const getAllSequence = React.useRef(() => { });
 
   function close() {
     setOpen(false);
@@ -40,16 +40,16 @@ export default function EditNumberSeries(props: Props) {
   const reducer = (state: any, action: any) => {
     console.log({ ...state, ...action.payload });
     switch (action.type) {
-        case "updateSeries":
-            return { ...state, ...action.payload };
-        default:
-            return state;
+      case "updateSeries":
+        return { ...state, ...action.payload };
+      default:
+        return state;
     }
-};
+  };
 
   const [user, dispatch] = React.useReducer(reducer, props.data)
 
-  
+
 
   const [error, setError] = React.useState<ErrorInterface>({
     input: "",
@@ -66,13 +66,13 @@ export default function EditNumberSeries(props: Props) {
 
   const handleSelect = (name: string, value: string) => {
     dispatch({
-        type: "updateSeries",
-        payload: {
-            [name]: value
-        },
+      type: "updateSeries",
+      payload: {
+        [name]: value
+      },
     });
     if (error.error) setError({ input: "", message: "", error: false });
-}
+  }
 
 
   function validate() {
@@ -101,14 +101,14 @@ export default function EditNumberSeries(props: Props) {
       if (res.status === 200) {
         raiseToast("Sequence Updated", "success");
         if (props.setSeries) {
-            let data = res.data;
-            props.setSeries((prev: any) => {
-              let index = prev.findIndex(
-                (item: any) => item.RecId === data.RecId
-              );
-              prev[index] = data;
-              return [...prev];
-            });            
+          let data = res.data;
+          props.setSeries((prev: any) => {
+            let index = prev.findIndex(
+              (item: any) => item.RecId === data.RecId
+            );
+            prev[index] = data;
+            return [...prev];
+          });
         }
         close();
       } else {
@@ -151,20 +151,20 @@ export default function EditNumberSeries(props: Props) {
       getAllSequence.current();
     }
     setOpen(props.edit !== undefined ? props.edit : true);
-}, [props.edit]);
+  }, [props.edit]);
 
-React.useEffect(start, [start]);
+  React.useEffect(start, [start]);
 
-const data = React.useCallback(() => {
+  const data = React.useCallback(() => {
     if (props.data) {
-        dispatch({
-            type: "updateSeries",
-            payload: props.data,
-        });
-      }
-}, [props.data]);
+      dispatch({
+        type: "updateSeries",
+        payload: props.data,
+      });
+    }
+  }, [props.data]);
 
-React.useEffect(data, [data]);
+  React.useEffect(data, [data]);
 
 
   return (

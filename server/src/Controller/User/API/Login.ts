@@ -29,8 +29,6 @@ class LoginUser {
    */
 
   async loginUser(req: Request, res: Response) {
-
-
     try {
 
       let email = req.query.email as string;

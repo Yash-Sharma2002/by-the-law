@@ -46,27 +46,10 @@ const ClientMenu: MenuInterface = {
           Object:<CustGroup />
         }
       ],
-    },
-    {
-      name: "Leads",
-      roles: [Roles.Admin],
-      type: DisplayType.subMenu,
-      subMenu: [
-        {
-          name: "All Leads",
-          path: "/all-leads",
-          roles: [Roles.Admin],
-          type: DisplayType.Form,
-        },
-        {
-          name: "My Leads",
-          path: "/my-leads",
-          roles: [Roles.Admin],
-          type: DisplayType.Form,
-        },
-      ],
-    },
+    }
   ],
 };
 
+
 export default ClientMenu;
+

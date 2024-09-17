@@ -9,7 +9,7 @@ import InputSelect from "../../../components/input/InputSelect";
 import createNumberSeries from "../../../functions/number-series/create";
 import getTables from "../../../functions/number-series/getTables";
 import toTitle from "../../../functions/toTitle";
-import SelectArray from "../../../interface/SelectArray";
+import {SelectArray} from "../../../interface/SelectArray";
 import { EmptySequence, SequenceInterface } from "../../../interface/Sequence";
 
 export default function NewNumberSeries(props: {

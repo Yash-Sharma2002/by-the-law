@@ -16,7 +16,7 @@ import createLocation from "../../../functions/location/create";
 import InputCountry from "../../../components/input/InputCountry";
 import getAllCustGroup from "../../../functions/CustGroup/getAll";
 import NewProps from "../../../interface/NewProps";
-import SelectArray from "../../../interface/SelectArray";
+import {SelectArray} from "../../../interface/SelectArray";
 import { getByRole } from "../../../functions/SecurityUserRole/getByRole";
 import { ClientInterface, EmptyClient } from "../../../interface/Client";
 import ProjTableInterface, { EmptyProjTable } from "../../../interface/ProjTable";

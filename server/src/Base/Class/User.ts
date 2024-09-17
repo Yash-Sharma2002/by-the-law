@@ -158,6 +158,7 @@ class User extends Start implements UserClass {
 
   async getUser(Id: string = this.Id, Email: string = this.Email, RecId: number = this.RecId || 0): Promise<UserInterface> {
     let user: UserInterface = await this.getOne(Collections.User, { Id: Id, Email: Email, RecId: RecId }) as UserInterface
+    console.log(user)
     if (user.RecId) return user;
     throw new ResponseClass(ResStatus.Error, UserFieldsMessage.UserNotFound);
   }

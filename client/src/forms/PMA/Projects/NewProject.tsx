@@ -11,7 +11,7 @@ import createProject from "../../../functions/projects/create";
 import Roles from "../../../config/enum/Roles";
 import getAll from "../../../functions/custTable/getAll";
 import ProjTableInterface, { EmptyProjTable } from "../../../interface/ProjTable";
-import SelectArray from "../../../interface/SelectArray";
+import { SelectArray } from "../../../interface/SelectArray";
 import { getByRole } from "../../../functions/SecurityUserRole/getByRole";
 
 export default function NewProject(props: {
@@ -36,9 +36,9 @@ export default function NewProject(props: {
 
   const [clients, setClients] = React.useState<SelectArray[]>([]);
 
-  const getClients = React.useRef(() => {});
-  const getRM = React.useRef(() => {});
-  const getDM = React.useRef(() => {});
+  const getClients = React.useRef(() => { });
+  const getRM = React.useRef(() => { });
+  const getDM = React.useRef(() => { });
 
   getDM.current = async () => {
     setLoading(true);
@@ -170,7 +170,7 @@ export default function NewProject(props: {
       getDM.current();
     }
     setOpen(props.open !== undefined ? props.open : true);
-  }, [props.open,open]);
+  }, [props.open, open]);
 
   return (
     <>
@@ -260,7 +260,7 @@ export default function NewProject(props: {
             error={error.message}
             selectArray={RelationshipManager}
           />
-          
+
           <FormInput
             label="Budget"
             handleChange={handleProjectChange}
@@ -272,7 +272,7 @@ export default function NewProject(props: {
           />
           <InputSelect
             label="Design Manager"
-            handleChange={(name:string, value:string) => {
+            handleChange={(name: string, value: string) => {
               setProject({ ...project, [name]: value });
             }}
             name="DesignManager"

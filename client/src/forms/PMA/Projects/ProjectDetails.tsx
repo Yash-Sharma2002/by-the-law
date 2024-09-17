@@ -22,7 +22,7 @@ import getUnitDim from "../../../functions/BusUnitDim/getUnitDim";
 import updateProject from "../../../functions/projects/update";
 import { CiSaveDown2 } from "react-icons/ci";
 import InputSelect from "../../../components/input/InputSelect";
-import SelectArray from "../../../interface/SelectArray";
+import {SelectArray} from "../../../interface/SelectArray";
 import { getByRole } from "../../../functions/SecurityUserRole/getByRole";
 
 export default function ProjectDetails() {

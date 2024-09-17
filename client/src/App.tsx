@@ -1,25 +1,21 @@
-import { Suspense } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Loading from "./components/loader/Loading";
-import Signin from "./pages/Signin";
-import AppProvider from "./context/Context";
-import { SidebarData } from "./constants/Sidebar";
-import GlobalLayout from "./components/dashboard/GlobalLayout";
-import WrongUrl from "./pages/WrongUrl";
-import { ChakraProvider } from "@chakra-ui/react";
-import { OtherRoutes, RoutesWithoutLayout } from "./constants/OtherRoute";
-import { FormRoute } from "./constants/FormRoute";
+import ERP from "./pages/ERP";
 import ContextProvider from "./context/ContextProvider";
+import Signin from "./pages/Signin";
+import Form from "./components/dashboard/forms/Form";
+import ForgetPass from "./pages/ForgetPass";
+import PassReset from "./pages/PassReset";
+import { ChakraProvider } from "@chakra-ui/react";
+
+
 
 function App() {
   return (
     <>
-      <ContextProvider>
-        <ChakraProvider>
-          <Router />
-        </ChakraProvider>
-      </ContextProvider>
+      <ChakraProvider>
+        <Router />
+      </ChakraProvider>
     </>
   );
 }
@@ -27,62 +23,38 @@ function App() {
 function Router() {
   return (
     <>
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/" element={<Signin />} />
-            <Route path="/sign-in" element={<Signin />} />
-            <Route path="*" element={<WrongUrl />} />
+   <BrowserRouter>
+        <Routes>
+          <Route
+            path="/mi/:mi"
+            element={<ContextProvider children={<ERP />} />}
+            />
+            
 
-            {SidebarData.map((item, index) => {
-              return (
-                <Route
-                  key={index}
-                  path={item.path}
-                  element={
-                    <GlobalLayout>
-                      <item.Element />
-                    </GlobalLayout>
-                  }
-                />
-              );
-            })}
+          <Route
+            path="/mi/:mi/:data"
+            element={<ContextProvider children={<Form />} />}
+          />
 
-            {OtherRoutes.map((item, index) => {
-              return (
-                <Route
-                  key={index}
-                  path={item.path}
-                  element={
-                    <GlobalLayout>
-                      <item.Element />
-                    </GlobalLayout>
-                  }
-                />
-              );
-            })}
-            {RoutesWithoutLayout.map((item, index) => {
-              return (
-                <Route
-                  key={index}
-                  path={item.path}
-                  element={<item.Element />}
-                />
-              );
-            })}
+          <Route
+            path="/sign-in"
+            element={<ContextProvider children={<Signin />} />}
+          />
 
-            {FormRoute.map((item, index) => {
-              return (
-                <Route
-                  key={index}
-                  path={item.path}
-                  element={<item.Element />}
-                />
-              );
-            })}
-          </Routes>
-        </Suspense>
+          <Route
+            path="/password/reset/:email/:uid"
+            element={<ContextProvider children={<PassReset />} />}
+          />
+
+          <Route
+            path="/password/forget"
+            element={<ContextProvider children={<ForgetPass />} />}
+          />
+
+          <Route path="/" element={<ContextProvider children={<Signin />} />} />
+        </Routes>
       </BrowserRouter>
+
     </>
   );
 }

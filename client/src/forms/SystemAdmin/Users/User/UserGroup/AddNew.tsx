@@ -5,7 +5,7 @@ import InputSelect from "../../../../../components/input/InputSelect";
 import { AppContext } from "../../../../../context/Context";
 import getAllUserGroup from "../../../../../functions/UserGroup/getAll";
 import addGroup from "../../../../../functions/user/addGroup";
-import SelectArray from "../../../../../interface/SelectArray";
+import { SelectArray } from "../../../../../interface/SelectArray";
 
 
 type Props = {
@@ -149,33 +149,33 @@ export default function AddNew(props: Props) {
         isOpen={open}
         close={close}
       >
-            <InputSelect
-              label="User"
-              handleChange={handleChange}
-              name="UserId"
-              isRequired={true}
-              isInvalid={error.input === "UserId"}
-              error={error.message}
-              defaultValue={props.UserId ? props.UserId : ""}
-              isDisabled={props.UserId ? true : false}
-              selectArray={
-                props.UserId ? [{ name: props.UserId, value: props.UserId }] :
-                users}
-            />
-            <InputSelect
-              label="User Group"
-              handleChange={handleChange}
-              name="UserGroup"
-              isRequired={true}
-              isDisabled={props.UserGroup ? true : false}
-              defaultValue={props.UserId ? props.UserId : ""}
-              isInvalid={error.input === "UserGroup"}
-              error={error.message}
-              selectArray={
-                props.UserGroup ? [{ name: props.UserGroup, value: props.UserGroup }] :
-                role
-              }
-            />
+        <InputSelect
+          label="User"
+          handleChange={handleChange}
+          name="UserId"
+          isRequired={true}
+          isInvalid={error.input === "UserId"}
+          error={error.message}
+          defaultValue={props.UserId ? props.UserId : ""}
+          isDisabled={props.UserId ? true : false}
+          selectArray={
+            props.UserId ? [{ name: props.UserId, value: props.UserId }] :
+              users}
+        />
+        <InputSelect
+          label="User Group"
+          handleChange={handleChange}
+          name="UserGroup"
+          isRequired={true}
+          isDisabled={props.UserGroup ? true : false}
+          defaultValue={props.UserId ? props.UserId : ""}
+          isInvalid={error.input === "UserGroup"}
+          error={error.message}
+          selectArray={
+            props.UserGroup ? [{ name: props.UserGroup, value: props.UserGroup }] :
+              role
+          }
+        />
       </ModalComponent>
     </>
   );

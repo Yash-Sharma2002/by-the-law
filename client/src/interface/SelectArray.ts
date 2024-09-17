@@ -1,6 +1,13 @@
-export default interface SelectArray {
-  id: string;
+export interface SelectArray {
+  id?: string;
   name: string;
   image?: string;
-  value?: string;
+  value: string;
+}
+
+
+export interface LinkSelect{
+  name: string;
+  link: string;
+  subText?: string;
 }

@@ -2,10 +2,12 @@ import { CiHome, CiStar } from "react-icons/ci";
 import { HiOutlineReceiptRefund } from "react-icons/hi2";
 import { RiSoundModuleLine } from "react-icons/ri";
 import Menu from "../../interface/Menu";
+// import HR from "./HR";
+import ProjectManagementAndAccounting from "./Projects";
+import ClientMenu from "./Customer";
 import SystemAdmin from "./SystemAdmin";
-import Default from "../../forms/Default/Default";
 import DisplayType from "../enum/DisplayType";
-import Searches from "./Searches";
+import Default from "../../forms/Default/Default";
 
 export const MainMenu: Menu[] = [
   {
@@ -36,11 +38,10 @@ export const MainMenu: Menu[] = [
     Icon: RiSoundModuleLine,
     roles: [],
     subMenu: [
-      Searches,
-      // ClientMenu,
+      ClientMenu,
       // HR,
-      // ProjectManagementAndAccounting,
-      SystemAdmin,
+      ProjectManagementAndAccounting,
+      SystemAdmin
     ],
   },
 ];

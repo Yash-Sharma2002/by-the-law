@@ -6,7 +6,7 @@ import { AppContext } from "../../../context/Context";
 import validateEmail from "../../../functions/validateEmail";
 import Roles from "../../../config/enum/Roles";
 import EditProps from "../../../interface/EditProps";
-import SelectArray from "../../../interface/SelectArray";
+import {SelectArray} from "../../../interface/SelectArray";
 import { getByRole } from "../../../functions/SecurityUserRole/getByRole";
 import getAllCustGroup from "../../../functions/CustGroup/getAll";
 import updateClient from "../../../functions/custTable/update";

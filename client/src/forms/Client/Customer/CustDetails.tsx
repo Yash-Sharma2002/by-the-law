@@ -11,7 +11,7 @@ import AllLocation from "../../Location/AllLocation";
 import DisplayTitle from "../../../components/common/Utils/DisplayTitle";
 import BusUnitDim from "../../SystemAdmin/BusinessUnit/BusUnitDim/BusUnitDim";
 import { CiSaveDown2 } from "react-icons/ci";
-import SelectArray from "../../../interface/SelectArray";
+import { SelectArray } from "../../../interface/SelectArray";
 import getOneCustomer from "../../../functions/custTable/getOne";
 import getCustAddress from "../../../functions/location/getCustAddress";
 import getUnitDim from "../../../functions/BusUnitDim/getUnitDim";
@@ -171,7 +171,7 @@ export default function CustDetails() {
 
   async function Save() {
     setLoading(true);
-  
+
     const client = {
       Name: formData.Name,
       CustGroup: formData.CustGroup,
@@ -304,35 +304,35 @@ export default function CustDetails() {
                 />
 
                 {
-                toggleEdit ?
-                  <InputSelect
-                    label="Blocked"
-                    name="Blocked"
-                    defaultValue={customer.Blocked ? "Yes" : "No"}
-                    handleChange={handleSelect}
-                    isDisabled={!toggleEdit}
-                    placeholder={customer.Blocked ? "Yes" : "No"}
-                    selectArray={[
-                      {
-                        id: "0",
-                        value: "0",
-                        name: "No",
-                      },
-                      {
-                        id: "1",
-                        value: "1",
-                        name: "Yes",
-                      }
-                    ]}
-                  /> :
-                  <FormInput
-                    label="Blocked"
-                    name="Blocked"
-                    defaultValue={customer.Blocked ? "Yes" : "No"}
-                    isDisabled={!toggleEdit}
-                    placeholder={customer.Blocked ? "Yes" : "No"}
-                  />
-                  }
+                  toggleEdit ?
+                    <InputSelect
+                      label="Blocked"
+                      name="Blocked"
+                      defaultValue={customer.Blocked ? "Yes" : "No"}
+                      handleChange={handleSelect}
+                      isDisabled={!toggleEdit}
+                      placeholder={customer.Blocked ? "Yes" : "No"}
+                      selectArray={[
+                        {
+                          id: "0",
+                          value: "0",
+                          name: "No",
+                        },
+                        {
+                          id: "1",
+                          value: "1",
+                          name: "Yes",
+                        }
+                      ]}
+                    /> :
+                    <FormInput
+                      label="Blocked"
+                      name="Blocked"
+                      defaultValue={customer.Blocked ? "Yes" : "No"}
+                      isDisabled={!toggleEdit}
+                      placeholder={customer.Blocked ? "Yes" : "No"}
+                    />
+                }
 
                 <PhoneInput
                   label="Phone"

@@ -4,7 +4,7 @@ import getAll from "../../../../../functions/SecurityRole/GetAll";
 import getAllUsers from "../../../../../functions/user/getAllUsers";
 import InputSelect from "../../../../../components/input/InputSelect";
 import { AppContext } from "../../../../../context/Context";
-import SelectArray from "../../../../../interface/SelectArray";
+import {SelectArray} from "../../../../../interface/SelectArray";
 import { addSecurityUserRole } from "../../../../../functions/SecurityUserRole/add";
 
 export default function AddNew(props: {

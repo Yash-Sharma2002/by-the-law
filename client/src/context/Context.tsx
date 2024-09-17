@@ -1,5 +1,5 @@
 import React from "react";
-import Loading from "../components/common/Loader/Loading";
+import Loading from "../components/loader/Loading";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 

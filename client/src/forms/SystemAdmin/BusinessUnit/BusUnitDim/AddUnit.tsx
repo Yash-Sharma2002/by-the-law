@@ -9,7 +9,7 @@ import LeftPopOverLayout from "../../../../components/ui/LeftPopOverLayout";
 import getAllBussUnit from "../../../../functions/BussUnit/getAll";
 import InputSelect from "../../../../components/input/InputSelect";
 import getAllByUnitBussUnitValueSet from "../../../../functions/BussUnitValueSet/getAllByUnit";
-import SelectArray from "../../../../interface/SelectArray";
+import {SelectArray} from "../../../../interface/SelectArray";
 
 
 export default function AddUnit(props: {

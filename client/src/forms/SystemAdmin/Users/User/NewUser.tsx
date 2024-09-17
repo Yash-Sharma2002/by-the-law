@@ -13,7 +13,7 @@ import { AppContext } from "../../../../context/Context";
 import addUser from "../../../../functions/user/add";
 import getAll from "../../../../functions/SecurityRole/GetAll";
 import getAllUserGroup from "../../../../functions/UserGroup/getAll";
-import SelectArray from "../../../../interface/SelectArray";
+import {SelectArray} from "../../../../interface/SelectArray";
 import { addSecurityUserRole } from "../../../../functions/SecurityUserRole/add";
 
 export default function NewUser(props: {

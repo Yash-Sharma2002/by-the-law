@@ -2,17 +2,17 @@ import React from "react";
 import { AppContext } from "../context/Context";
 import { Link, useNavigate } from "react-router-dom";
 import InputPassword from "../components/input/InputPassword";
+import UserErrorInterface from "../interface/Error";
 import FormInput from "../components/input/FormInput";
 import { Button } from "@chakra-ui/react";
 import login from "../functions/user/login";
-import ErrorInterface from "../interface/Error";
 
 export default function Signin() {
 
   const { setData: setLoggedInUser, raiseToast, setLoading } = React.useContext(AppContext);
   const navigate = useNavigate();
 
-  const [error, setError] = React.useState<ErrorInterface>({
+  const [error, setError] = React.useState<UserErrorInterface>({
     input: "",
     message: "",
     error: false,
@@ -67,7 +67,7 @@ export default function Signin() {
     <div className="flex justify-center items-center min-h-screen font-inter">
       <div className="absolute top-8 w-full">
         <div className="flex justify-center items-center mb-5">
-          <span className="text-xl font-bold text-green-900">Adinsight</span>
+          <span className="text-xl font-bold text-green-900">By The Law</span>
         </div>
         <hr className="border-t border-gray-200 mt-2" />
       </div>
