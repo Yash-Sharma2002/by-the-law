@@ -12,6 +12,7 @@ export interface UserInterface {
     Enabled: number;
     DefaultCountryRegion?: string;
     StartPage: string;
+    UserGroup?: string;
     Language: string;
     ModifiedBy: string;
     ModifiedDateTime?: string;
@@ -45,6 +46,7 @@ export default interface UserClass extends UserInterface {
     paramPassword(Password: string): string;
     paramEnabled(Enabled: number): number;
     paramStartPage(StartPage: string): string;
+    paramUserGroup(UserGroup: string): string;
     paramLanguage(Language: string): string;
     paramModifiedBy(ModifiedBy: string): string;
     paramModifiedDateTime(ModifiedDateTime: string): string;
@@ -61,6 +63,7 @@ export const EmptyUser: UserInterface = {
     Enabled: 0,
     StartPage: "",
     Language: "",
+    UserGroup: "",
     DefaultCountryRegion: "",
     ModifiedBy: "",
     CreatedBy: "",

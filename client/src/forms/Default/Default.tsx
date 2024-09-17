@@ -37,7 +37,7 @@ export default function Default() {
 
       <h1 className="w-full text-[6rem] text-center">WELCOME TO <br />
        {/* {organisation.organisation_name} */}
-       ByTheLaW
+       By The Law
        </h1>
       </div>
     </>

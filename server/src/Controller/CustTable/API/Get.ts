@@ -36,7 +36,7 @@ class GetClients {
             const client = new Client();
             client.paramRecId(parseInt(req.query.custTable as string));
             await client.connectDb();
-            let data = await client.getOne(Collections.Client, { RecId: client.paramRecId() });
+            let data = await client.getOne(Collections.CustTableWithName, { RecId: client.paramRecId() });
             client.flush();
 
             let response = new ResponseClass(
@@ -71,7 +71,7 @@ class GetClients {
 
             const client = new Client();
             await client.connectDb();
-            let data = await client.getAll(Collections.Client, {});
+            let data = await client.getAll(Collections.CustTableWithName, {});
             client.flush();
 
             let response = new ResponseClass(
@@ -106,7 +106,7 @@ class GetClients {
 
             const client = new Client();
             await client.connectDb();
-            let data = await client.getAll(Collections.Client, { ManagerId: req.query.Id as string });
+            let data = await client.getAll(Collections.CustTableWithName, { ManagerId: req.query.Id as string });
             client.flush();
 
             let response = new ResponseClass(
@@ -147,7 +147,7 @@ class GetClients {
             const client = new Client();
             client.paramRecId(parseInt(req.query.RefRecId as string));
             await client.connectDb();
-            let user = await client.getOne(Collections.Client, { RecId: client.paramRecId() });
+            let user = await client.getOne(Collections.CustTableWithName, { RecId: client.paramRecId() });
             client.flush();
 
             let clt = new Location();

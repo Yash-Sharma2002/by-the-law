@@ -34,7 +34,6 @@ export default function AllProjects() {
   });
   const [newSeries, setNewSeries] = React.useState(false);
   const [statusChange, setStatusChange] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
   const getProjects = React.useRef(() => {});
 
@@ -183,10 +182,8 @@ export default function AllProjects() {
               "Customer",
               "Start Date",
               "End Date",
-              "Extended Date",
               "Status",
-              "Relationship Manager",
-              // "Type",
+              "Project Manager",
               "Created By",
               "Created Date",
               "Modified By",
@@ -205,11 +202,9 @@ export default function AllProjects() {
                     data.CustName,
                     new Date(data.StartDate).toDateString(),
                     new Date(data.EndDate).toDateString(),
-                    new Date(data.ExtendedDate).toDateString(),
                     ProjStatus[data.Status],
                     data.ProjManager,
                     data.ProjManagerRecId,
-                    // data.Type,
                     data.CreatedBy,
                     new Date(data.CreatedDateTime).toDateString(),
                     data.ModifiedBy,
@@ -218,12 +213,11 @@ export default function AllProjects() {
                 })) ||
               []
             }
-            hidden={[0, 5, 12, 14]}
+            hidden={[0, 5, 12]}
             link={[
               { form: ModuleUrls.Projects, index: 1, key: 0 },
               { form: ModuleUrls.Customers, index: 4, key: 5 },
-              { form: ModuleUrls.Users, index: 11, key: 12 }, // project manager
-              { form: ModuleUrls.Users, index: 13, key: 14 }, // design manager
+              { form: ModuleUrls.Users, index: 10, key: 11 }, // project manager
             ]}
           />
         </Layout>

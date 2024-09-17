@@ -11,13 +11,13 @@ import Roles from "../../../../config/enum/Roles";
 import DisplayType from "../../../../config/enum/DisplayType";
 import getSecurityUserRoleDetails from "../../../../functions/SecurityUserRole/getSecurityUserRoleDetails";
 import getUsersDetails from "../../../../functions/user/getUserDetails";
-import getOneUserGroup from "../../../../functions/UserGroup/getOne";
 import { EmptyUserGroup, UserGroupInterface } from "../../../../interface/UserGroup";
 import deleteUser from "../../../../functions/user/delete";
 import FormTopBar from "../../../../components/ui/FormTopBar";
 import DisplayTitle from "../../../../components/common/Utils/DisplayTitle";
 import FormInput from "../../../../components/input/FormInput";
 import GroupList from "./UserGroup/GroupList";
+import getByNameUserGroup from "../../../../functions/UserGroup/getByName";
 
 export default function UserDetails() {
   const { data } = useParams();
@@ -71,7 +71,7 @@ export default function UserDetails() {
       raiseToast(roleRes.error, "error");
     }
 
-    const dims = await getOneUserGroup(CurrentUser, res.data.UserGroup);
+    const dims = await getByNameUserGroup(CurrentUser, res.data.UserGroup);
     if (dims.status === 200) {
       setGroup(dims.data);
     } else {
@@ -119,7 +119,7 @@ export default function UserDetails() {
               label="Id"
               defaultValue={userDetails.Id}
               isDisabled={true}
-              name="UserId"
+              name="Id"
             />
               <FormInput
               label="Name"

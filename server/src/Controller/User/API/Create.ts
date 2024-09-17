@@ -37,19 +37,19 @@ class CreateUser {
       await user.insert();
 
       const securityRole = new SecurityRole({
-        Name:"System Administator",
-        Description:"System Administator with full access to the system",
-        CreatedBy:"Admin",
-        ModifiedBy:"Admin"
+        Name: "System Administator",
+        Description: "System Administator with full access to the system",
+        CreatedBy: "Admin",
+        ModifiedBy: "Admin"
       });
       await securityRole.connectDb();
       await securityRole.insert();
 
       let securityUserRole = new SecurityUserRole({
-        UserId:user.paramId(),
-        SecurityRole:securityRole.paramRecId(),
-        CreatedBy:"Admin",
-        ModifiedBy:"Admin"
+        UserId: user.paramId(),
+        SecurityRole: securityRole.paramRecId(),
+        CreatedBy: "Admin",
+        ModifiedBy: "Admin"
       });
       await securityUserRole.connectDb();
       await securityUserRole.insert();
@@ -131,6 +131,7 @@ class CreateUser {
         Email: user.paramEmail(),
         Enabled: user.paramEnabled(),
         Language: user.paramLanguage(),
+        UserGroup: user.paramUserGroup(),
         CreatedBy: user.paramCreatedBy(),
         CreatedDateTime: user.paramCreatedDateTime(),
         RecId: user.paramRecId(),

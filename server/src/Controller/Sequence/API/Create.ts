@@ -42,7 +42,7 @@ class CreateSequence {
                 ResStatus.Success,
                 SequenceFields.SequenceCreated
             );
-            response.setData(await sequence.getOne(Collections.SequenceFull, { RecId: sequence.paramRecId() }));
+            response.setData(await sequence.getOne(Collections.SequenceFull, { Name: sequence.paramName() }));
             sequence.flush();
             return res
                 .status(ResStatus.Success)

@@ -100,6 +100,7 @@ export default function List() {
           head={[
             "User Id",
             "Name",
+            "UserGroup",
             "Enabled",
             "Email",
             "Language",
@@ -111,6 +112,7 @@ export default function List() {
                   data.RecId,
                   data.Id,
                   data.Name,
+                  data.UserGroup,
                   data.Enabled ? "Yes" : "No",
                   data.Email,
                   data.Language,

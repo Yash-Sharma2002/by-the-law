@@ -5,6 +5,7 @@ import DisplayType from "../enum/DisplayType";
 import Roles from "../enum/Roles";
 import List from "../../forms/SystemAdmin/Users/User/List";
 import BusinessUnit from "../../forms/SystemAdmin/BusinessUnit/BusinessUnit";
+import UserGroup from "../../forms/SystemAdmin/Users/UserGroup/UserGroup";
 
 const SystemAdmin: MenuInterface = {
   name: "System Administration",
@@ -51,13 +52,13 @@ const SystemAdmin: MenuInterface = {
           roles: [Roles.Admin],
           Object: <List />,
         },
-        // {
-        //   name: "New User",
-        //   roles: [Roles.Admin],
-        //   path: "/new-user",
-        //   type: DisplayType.Form,
-        //   Object: <NewUser />,
-        // },
+        {
+          name: "User Group",
+          roles: [Roles.Admin],
+          path: "/user-group",
+          type: DisplayType.Form,
+          Object: <UserGroup />,
+        },
       ],
     },
   ],

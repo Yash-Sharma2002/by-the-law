@@ -103,11 +103,14 @@ class Start extends Validations {
     try {
       await this.connect.start();
       let result = await this.connect.getDb().collection(collection).insertOne(query)
-        .then((data) => {
-          return this.connect.getDb().collection(collection).find({ _id: data.insertedId }).project({
-            _id: 0,
-            ...columns
-          }).toArray();
+        .then(async (data) => {
+          return await this.connect.getDb().collection(collection).findOne({ _id: data.insertedId }
+            , {
+              projection: {
+                _id: 0,
+                ...columns
+              }
+            })
         })
         .catch((error) => {
           throw new ResponseClass(
@@ -116,7 +119,7 @@ class Start extends Validations {
           );
         });
       await this.connect.commit();
-      return result[0];
+      return result as any;
     } catch (error: any) {
       await this.connect.abort();
       if (error instanceof ResponseClass) {
@@ -143,7 +146,9 @@ class Start extends Validations {
       await this.connect.start();
       await this.connect.getDb().collection(collection).updateOne(
         operator === "AND" ? andConverter(query) : orConverter(query)
-        , updateQuery);
+        , {
+          $set: updateQuery
+        });
       await this.connect.commit();
     } catch (error: any) {
       await this.connect.abort();
@@ -166,15 +171,17 @@ class Start extends Validations {
    */
   async getWithColumns(collection: string, query: any, columns: any, operator: string = "OR") {
     try {
-      let data = await this.connect.getDb().collection(collection).find(
-        operator === "AND" ? andConverter(query) : orConverter(query)
-      ).project(columns).toArray();
-      if (data.length === 0) {
-        return {}
-      }
-      else {
-        return data[0]
-      }
+      let data = await this.connect.getDb().collection(collection).findOne(
+        operator === "AND" ? andConverter(query) : orConverter(query),
+        {
+          projection: {
+            _id: 0,
+            ...columns
+          }
+        }
+      )
+      if(!data) return {}
+      return data as any;
 
     } catch (error: any) {
       throw new ResponseClass(
@@ -192,7 +199,9 @@ class Start extends Validations {
    */
   async getOne(collection: string, query: any, operator: string = "OR") {
     try {
-      return (await this.connect.getDb().collection(collection).find(operator === "AND" ? andConverter(query) : orConverter(query)
+      return (await this.connect.getDb().collection(collection).find(
+        Object.keys(query).length === 0 ? {} :
+          operator === "AND" ? andConverter(query) : orConverter(query)
       ).project({ _id: 0 }).limit(1).toArray())[0];
     } catch (error: any) {
       throw new ResponseClass(
@@ -210,7 +219,9 @@ class Start extends Validations {
    */
   async getAll(collection: string, query: any, operator: string = "OR") {
     try {
-      return await this.connect.getDb().collection(collection).find(operator === "AND" ? andConverter(query) : orConverter(query)
+      return await this.connect.getDb().collection(collection).find(
+        Object.keys(query).length === 0 ? {} :
+          operator === "AND" ? andConverter(query) : orConverter(query)
       ).project({ _id: 0 }).toArray();
     } catch (error: any) {
       throw new ResponseClass(
@@ -230,7 +241,9 @@ class Start extends Validations {
    */
   async getAllWithColumns(collection: string, query: any, columns: any, operator: string = "OR") {
     try {
-      return await this.connect.getDb().collection(collection).find(operator === "AND" ? andConverter(query) : orConverter(query)
+      return await this.connect.getDb().collection(collection).find(
+        Object.keys(query).length === 0 ? {} :
+          operator === "AND" ? andConverter(query) : orConverter(query)
       ).project({ _id: 0, ...columns }).toArray();
     } catch (error: any) {
       console.log(error);

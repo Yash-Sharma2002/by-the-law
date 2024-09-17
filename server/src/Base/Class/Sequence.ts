@@ -61,9 +61,9 @@ class Sequence extends Start implements SequenceClass {
     this.SeqFor = sequence.SeqFor || 0;
     this.Prefix = sequence.Prefix || "";
     this.Suffix = sequence.Suffix || "";
-    this.Curr = sequence.Curr || 0;
-    this.Increment = sequence.Increment || 0;
-    this.MaxDigits = sequence.MaxDigits || 0;
+    this.Curr = Number(sequence.Curr) || 0;
+    this.Increment = Number(sequence.Increment) || 0;
+    this.MaxDigits = Number(sequence.MaxDigits) || 0;
     this.ModifiedBy = sequence.ModifiedBy || "";
     this.CreatedBy = sequence.CreatedBy || "";
     this.RecId = sequence.RecId || 0;
@@ -84,7 +84,9 @@ class Sequence extends Start implements SequenceClass {
       Increment: this.Increment,
       MaxDigits: this.MaxDigits,
       ModifiedBy: this.ModifiedBy,
-      CreatedBy: this.CreatedBy
+      CreatedBy: this.CreatedBy,
+      ModifiedDateTime: this.ModifiedDateTime,
+      CreatedDateTime: this.CreatedDateTime,
     }
   }
 
@@ -182,7 +184,7 @@ class Sequence extends Start implements SequenceClass {
   async insert(): Promise<void> {
     this.modified();
     this.CreatedDateTime = this.ModifiedDateTime;
-    this.RecId = (await this.insertOneWithOutput(Collections.Sequence, this.get(), { RecId: 1 })).RecId
+    await this.insertOne(Collections.Sequence, this.get())
   }
 
   /**
@@ -201,14 +203,16 @@ class Sequence extends Start implements SequenceClass {
    * @returns void
    */
   async delete(SeqFor: number = this.SeqFor, RecId: number = this.RecId || 0): Promise<void> {
-    await this.deleteOne(Collections.Sequence, {$or: [{ RecId: RecId }, { SeqFor: SeqFor }]});
+    await this.deleteOne(Collections.Sequence, { $or: [{ RecId: RecId }, { SeqFor: SeqFor }] });
   }
 
   async getNext(SeqFor: number): Promise<string> {
     try {
       await this.connectDb();
-      let sequence = (await this.getWithColumns(Collections.Sequence, { SeqFor: SeqFor }, ["Curr", "Increment", "Prefix", "Suffix", "MaxDigits", "RecId"])) as unknown as SequenceInterface;
-      if (sequence) {
+      let sequence = (await this.getWithColumns(Collections.Sequence, { SeqFor: SeqFor }, {
+        "Curr": 1, "Increment": 1, "Prefix": 1, "Suffix": 1, "MaxDigits": 1, "RecId": 1
+      })) as unknown as SequenceInterface;
+      if (sequence && sequence.RecId) {
         const current = sequence.Curr + sequence.Increment;
         await this.updateOne(Collections.Sequence, { RecId: sequence.RecId }, { Curr: current });
         let prefix = sequence.Prefix ? sequence.Prefix + "-" : "";
@@ -217,6 +221,7 @@ class Sequence extends Start implements SequenceClass {
         this.flush();
         return prefix + midNum + suffix;
       } else {
+        console.log("Sequence not found");
         throw new ResponseClass(ResStatus.NotFound, SequenceFields.SequenceNotFound);
       }
     } catch (e) {

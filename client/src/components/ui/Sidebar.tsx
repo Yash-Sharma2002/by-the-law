@@ -71,7 +71,7 @@ export default function Sidebar() {
       >
         <div className="flex flex-col justify-between items-start h-[90%] w-full">
           <div className=" w-full">
-            <p>AdInsight</p>
+            <p>ByTheLaw</p>
             {/* <Img
               src={
                 drawer

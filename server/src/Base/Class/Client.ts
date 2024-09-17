@@ -17,7 +17,7 @@ class Client extends Start implements ClientClass {
     Phone: string = "";
     Password: string = "";
     Status: number = Status.Active;
-    LawyerId: number = 0;
+    Manager: number = 0;
     CustGroup: number = 0;
     CreatedBy: string = "";
     ModifiedBy: string = "";
@@ -42,7 +42,7 @@ class Client extends Start implements ClientClass {
         this.Phone = client.Phone;
         this.Password = client.Password;
         this.Status = client.Status;
-        this.LawyerId = client.LawyerId;
+        this.Manager = client.Manager;
         this.CustGroup = client.CustGroup || 0;
         this.CreatedBy = client.CreatedBy;
         this.ModifiedBy = client.ModifiedBy;
@@ -57,7 +57,7 @@ class Client extends Start implements ClientClass {
         this.Email = "";
         this.Password = "";
         this.Status = Status.Active;
-        this.LawyerId = 0;
+        this.Manager = 0;
         this.CustGroup = 0;
         this.CreatedBy = "";
         this.ModifiedBy = "";
@@ -100,8 +100,8 @@ class Client extends Start implements ClientClass {
         return this.Status = Status;
     }
 
-    paramLawyerId(LawyerId: number = this.LawyerId): number {
-        return this.LawyerId = LawyerId;
+    paramManager(Manager: number = this.Manager): number {
+        return this.Manager = Manager;
     }
 
     paramCustGroup(CustGroup: number = this.CustGroup): number {
@@ -128,7 +128,7 @@ class Client extends Start implements ClientClass {
             Phone: this.Phone,
             Password: this.Password,
             Status: this.Status,
-            LawyerId: this.LawyerId,
+            Manager: this.Manager,
             CreatedBy: this.CreatedBy,
             ModifiedBy: this.ModifiedBy,
             CreatedDateTime: this.CreatedDateTime,
@@ -142,7 +142,7 @@ class Client extends Start implements ClientClass {
         this.validateEmail(this.Email)
         this.validatePassword(this.Password)
         this.validatePhone(this.Phone)
-        if (!this.LawyerId) throw new ResponseClass(ResStatus.BadRequest, ClientFieldsMessage.LawyerId)
+        if (!this.Manager) throw new ResponseClass(ResStatus.BadRequest, ClientFieldsMessage.Manager)
     }
 
     async modified(): Promise<void> {
@@ -208,10 +208,10 @@ class Client extends Start implements ClientClass {
         await this.checkExists();
         await this.modified();
         this.CreatedDateTime = this.ModifiedDateTime;
-        this.RecId = (await this.insertOneWithOutput(Collections.Client, this.get(), { RecId: 1 })).RecId
+        await this.insertOne(Collections.Client, this.get())
     }
 
-    async getLawyerId(AccountNum: string = this.AccountNum, RecId: number = this.RecId || 0): Promise<number> {
+    async getManager(AccountNum: string = this.AccountNum, RecId: number = this.RecId || 0): Promise<number> {
         await this.connectDb();
         const search: ClientInterface = await this.getOne(Collections.Client, {
             $or: [
@@ -221,7 +221,7 @@ class Client extends Start implements ClientClass {
         }) as ClientInterface;
         this.flush();
         if (!search.RecId) throw new ResponseClass(ResStatus.Error, ClientFieldsMessage.NotFound);
-        return search.LawyerId;
+        return search.Manager;
     }
 
     async update(): Promise<void> {

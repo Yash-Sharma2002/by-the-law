@@ -68,7 +68,9 @@ class Get {
 
             const securityRole = new SecurityRole();
             await securityRole.connectDb();
-            let roles = await securityRole.getAllWithColumns(Collections.SecurityRole, {},["Name","Description","RecId","CreatedBy","CreatedDateTime","ModifiedBy","ModifiedDateTime"]);
+            let roles = await securityRole.getAllWithColumns(Collections.SecurityRole, {},{
+                "Name":1,"Description":1,"RecId":1,"CreatedBy":1,"CreatedDateTime":1,"ModifiedBy":1,"ModifiedDateTime":1
+            });
             securityRole.flush();
 
             let response = new ResponseClass(

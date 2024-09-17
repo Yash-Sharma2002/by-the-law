@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ERP from "./pages/ERP";
 import ContextProvider from "./context/ContextProvider";
 import Signin from "./pages/Signin";
-import Form from "./components/dashboard/forms/Form";
 import ForgetPass from "./pages/ForgetPass";
 import PassReset from "./pages/PassReset";
 import { ChakraProvider } from "@chakra-ui/react";
+import Form from "./pages/Form";
 
 
 

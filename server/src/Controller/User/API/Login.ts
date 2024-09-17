@@ -56,7 +56,6 @@ class LoginUser {
       await userAccess.connectDb();
       await userAccess.update(email);
 
-
       let response = new ResponseClass(
         ResStatus.Success,
         UserFieldsMessage.LoginSuccess
@@ -66,7 +65,7 @@ class LoginUser {
         Email: curUser.Email,
         Enabled: curUser.Enabled,
         ...userAccess.get(),
-        Roles:await new SecurityUserRole().getSecurityRole(userAccess.paramId())
+        Roles: await new SecurityUserRole().getSecurityRole(userAccess.paramId())
       });
       userAccess.flush();
       user.flush();

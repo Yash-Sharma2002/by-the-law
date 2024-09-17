@@ -21,7 +21,6 @@ export default function BusinessUnit() {
   const [selectedUnit, setSelectedUnit] = React.useState<BusUnitInterface>(EmptyBusUnit);
   const [edit, setEdit] = React.useState(false);
   const [newSeries, setNewSeries] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
   const getBusUnit = React.useRef(() => { });
 

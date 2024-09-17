@@ -12,6 +12,7 @@ import BusUnitValueSetRouter from "../Controller/BusUnitValueSet/Route/BusUnitVa
 import RemarksRouter from "../Controller/Remarks/Router/RemarksRouter";
 import ProjtableRouter from "../Controller/Projects/Router/ProjtableRouter";
 import CustTableRouter from "../Controller/CustTable/Route/CustTableRouter";
+import UserGroupRouter from "../Controller/UserGroup/Route/UserGroupRouter";
 
 const MainRouter = express.Router();
 
@@ -20,6 +21,7 @@ MainRouter.use("/api/securityRole/", SecurityRoleRouter);
 MainRouter.use("/api/securityUserRole/", SecurityUserRoleRouter);
 MainRouter.use("/api/sequence/", SequenceRouter);
 MainRouter.use("/api/custGroup/", CustGroupRouter);
+MainRouter.use("/api/userGroup/", UserGroupRouter);
 MainRouter.use("/api/custTable/", CustTableRouter);
 MainRouter.use("/api/remarks/", RemarksRouter);
 MainRouter.use("/api/busUnit/", BusUnitRouter);

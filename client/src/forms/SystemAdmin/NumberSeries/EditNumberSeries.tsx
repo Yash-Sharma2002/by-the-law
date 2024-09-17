@@ -38,7 +38,6 @@ export default function EditNumberSeries(props: Props) {
   }
 
   const reducer = (state: any, action: any) => {
-    console.log({ ...state, ...action.payload });
     switch (action.type) {
       case "updateSeries":
         return { ...state, ...action.payload };
@@ -191,6 +190,7 @@ export default function EditNumberSeries(props: Props) {
             label="Sequence For"
             selectArray={seqFor}
             defaultValue={user.SeqFor.toString()}
+            // defaultValue={user.SeqFor.toString()}
             name="SeqFor"
             placeholder="Select Sequence For"
             handleChange={handleSelect}

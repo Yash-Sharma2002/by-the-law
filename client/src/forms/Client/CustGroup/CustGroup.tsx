@@ -21,7 +21,6 @@ export default function CustGroup() {
   const [series, setSeries] = React.useState<any>([]);
   const [edit, setEdit] = React.useState(false);
   const [newSeries, setNewSeries] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
   const getCustGroup = React.useRef(() => { });
 
@@ -123,7 +122,6 @@ export default function CustGroup() {
               []
             }
             hidden={[0]}
-            link={[{ form: "CustomerGroup", index: 1, key: 0 }]}
           />
         </Layout>
         <New

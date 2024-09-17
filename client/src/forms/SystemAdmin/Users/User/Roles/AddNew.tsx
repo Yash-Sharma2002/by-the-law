@@ -4,8 +4,9 @@ import getAll from "../../../../../functions/SecurityRole/GetAll";
 import getAllUsers from "../../../../../functions/user/getAllUsers";
 import InputSelect from "../../../../../components/input/InputSelect";
 import { AppContext } from "../../../../../context/Context";
-import {SelectArray} from "../../../../../interface/SelectArray";
+import { SelectArray } from "../../../../../interface/SelectArray";
 import { addSecurityUserRole } from "../../../../../functions/SecurityUserRole/add";
+import FormInput from "../../../../../components/input/FormInput";
 
 export default function AddNew(props: {
   open: boolean;
@@ -33,8 +34,8 @@ export default function AddNew(props: {
     Role: props.Role ? props.Role : "",
   });
 
-  const getAllRoles = React.useRef(() => {});
-  const getUsers = React.useRef(() => {});
+  const getAllRoles = React.useRef(() => { });
+  const getUsers = React.useRef(() => { });
 
   function close() {
     setOpen(false);
@@ -146,23 +147,39 @@ export default function AddNew(props: {
         isOpen={open}
         close={close}
       >
-        <InputSelect
-          label="UserId"
-          handleChange={handleChange}
-          name="UserId"
-          defaultValue={props.UserId ? props.UserId : ""}
-          isDisabled={props.UserId ? true : false}
-          isRequired={true}
-          isInvalid={error.input === "UserId"}
-          error={error.message}
-          selectArray={users}
-        />
+
+        {
+          props.UserId ?
+            <FormInput
+              label="UserId"
+              name="UserId"
+              defaultValue={props.UserId ? props.UserId : ""}
+              isDisabled={props.UserId ? true : false}
+              isRequired={true}
+              isInvalid={error.input === "UserId"}
+              error={error.message}
+            />
+            :
+            <InputSelect
+              label="UserId"
+              handleChange={handleChange}
+              name="UserId"
+              defaultValue={props.UserId ? props.UserId : ""}
+              isDisabled={props.UserId ? true : false}
+              isRequired={true}
+              isInvalid={error.input === "UserId"}
+              error={error.message}
+              selectArray={users}
+            />
+
+        }
+
         <InputSelect
           label="Role"
           handleChange={handleChange}
           name="Role"
           isRequired={true}
-          defaultValue={props.Role  ? props.Role : ""}
+          defaultValue={props.Role ? props.Role : ""}
           isDisabled={props.Role ? true : false}
           isInvalid={error.input === "Role"}
           error={error.message}

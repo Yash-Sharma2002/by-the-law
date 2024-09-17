@@ -16,6 +16,7 @@ class User extends Start implements UserClass {
   Password: string = "";
   Enabled: number = 0;
   StartPage: string = "default";
+  UserGroup: string = "";
   Language: string = "en-IN";
   ModifiedBy: string = "";
   ModifiedDateTime?: string = "";
@@ -47,6 +48,7 @@ class User extends Start implements UserClass {
     this.Password = "";
     this.Enabled = 1;
     this.StartPage = "default";
+    this.UserGroup = "";
     this.Language = "en-IN";
     this.ModifiedBy = "";
     this.CreatedBy = "";
@@ -62,6 +64,7 @@ class User extends Start implements UserClass {
     this.Email = user.Email || "";
     this.Name = user.Name || "";
     this.Password = user.Password || "";
+    this.UserGroup = user.UserGroup || "";
     this.Enabled = user.Enabled || 1;
     this.StartPage = user.StartPage || "default";
     this.Language = user.Language || "en-IN";
@@ -77,6 +80,7 @@ class User extends Start implements UserClass {
       Password: this.Password,
       Enabled: this.Enabled,
       StartPage: this.StartPage,
+      UserGroup: this.UserGroup,
       Language: this.Language,
       ModifiedBy: this.ModifiedBy,
       CreatedBy: this.CreatedBy,
@@ -99,6 +103,10 @@ class User extends Start implements UserClass {
 
   paramPassword(Password: string = this.Password): string {
     return this.Password = Password;
+  }
+
+  paramUserGroup(UserGroup: string = this.UserGroup): string {
+    return this.UserGroup = UserGroup;
   }
 
   paramEnabled(Enabled: number = this.Enabled): number {
@@ -143,22 +151,21 @@ class User extends Start implements UserClass {
   async modified(): Promise<void> {
     this.validate()
     this.ModifiedDateTime = this.getDateTime();
-    if (!this.Id) this.Id = await new Sequence().getNext(await new SysTableId().getTableId(Collections.User));
+    if (!this.Id) this.Id = await new Sequence().getNext(Number(await new SysTableId().getTableId(Collections.User)));
   }
 
   async checkExists(Id: string = this.Id, Email: string = this.Email): Promise<void> {
-    const user: UserInterface = await this.getWithColumns(Collections.User, {  Id: Id, Email: Email }, ["RecId"]) as UserInterface;
+    const user: UserInterface = await this.getWithColumns(Collections.User, { Id: Id, Email: Email }, {"RecId":1}) as UserInterface;
     if (user !== undefined && user.RecId) throw new ResponseClass(ResStatus.Error, UserFieldsMessage.UserAlreadyExists);
   }
 
   async checkNotExists(Id: string = this.Id, Email: string = this.Email): Promise<void> {
-    const user: UserInterface = await this.getWithColumns(Collections.User, { Id: Id, Email: Email }, ["RecId"]) as UserInterface;
+    const user: UserInterface = await this.getWithColumns(Collections.User, { Id: Id, Email: Email }, {"RecId":1}) as UserInterface;
     if (!user.RecId) throw new ResponseClass(ResStatus.Error, UserFieldsMessage.UserNotFound);
   }
 
   async getUser(Id: string = this.Id, Email: string = this.Email, RecId: number = this.RecId || 0): Promise<UserInterface> {
     let user: UserInterface = await this.getOne(Collections.User, { Id: Id, Email: Email, RecId: RecId }) as UserInterface
-    console.log(user)
     if (user.RecId) return user;
     throw new ResponseClass(ResStatus.Error, UserFieldsMessage.UserNotFound);
   }
@@ -167,7 +174,7 @@ class User extends Start implements UserClass {
     await this.modified();
     this.CreatedDateTime = this.ModifiedDateTime;
     this.Password = new Hash(this.Password).hash();
-    this.RecId = (await this.insertOneWithOutput(Collections.User, this.get(), { RecId: 1 })).RecId
+    await this.insertOneWithOutput(Collections.User, this.get(), { "RecId": 1 })
   }
 
   async update(): Promise<void> {

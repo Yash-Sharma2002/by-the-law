@@ -82,7 +82,7 @@ class SecurityUserRole extends Start implements SecurityUserRoleClass {
      * @param UserId 
      */
     async checkExists(SecurityRole: number = this.SecurityRole, UserId: string = this.UserId): Promise<void> {
-        let result = (await this.getWithColumns(Collections.SecurityUserRole, { SecurityRole: SecurityRole, UserId: UserId }, ["RecId"])) as unknown as SecurityUserRoleInterface;
+        let result = (await this.getWithColumns(Collections.SecurityUserRole, { SecurityRole: SecurityRole, UserId: UserId }, {"RecId":1})) as unknown as SecurityUserRoleInterface;
         if (result !== undefined && result.RecId) throw new ResponseClass(ResStatus.BadRequest, SecurityUserRoleMessage.USER_ROLE_ALREADY_EXISTS);
     }
 
@@ -92,7 +92,7 @@ class SecurityUserRole extends Start implements SecurityUserRoleClass {
     async checkAdmin(UserId: string = this.UserId): Promise<void> {
         try {
             await this.connectDb()
-            let result = (await this.getWithColumns(Collections.SecurityUserRole, { UserId: UserId, SecurityRole: AdminRecId }, ["RecId"])) as unknown as SecurityUserRoleInterface;
+            let result = (await this.getWithColumns(Collections.SecurityUserRole, { UserId: UserId, SecurityRole: AdminRecId }, {"RecId":1})) as unknown as SecurityUserRoleInterface;
             if (result === undefined || !result.RecId) throw new ResponseClass(ResStatus.BadRequest, SecurityUserRoleMessage.USER_NOT_ADMIN);
         } catch (e) {
             throw new ResponseClass(ResStatus.BadRequest, SecurityUserRoleMessage.USER_NOT_ADMIN);
@@ -110,7 +110,7 @@ class SecurityUserRole extends Start implements SecurityUserRoleClass {
     async getSecurityRole(UserId: string = this.UserId) {
         try {
             await this.connectDb();
-            let result = (await this.getAllWithColumns(Collections.SecurityUser, { UserId: UserId }, ["Name"])) as any[]
+            let result = (await this.getAllWithColumns(Collections.SecurityUser, { UserId: UserId }, {"Name":1})) as any[]
             this.flush();
             // result = result.map((item) => item.Name); // for multiple roles
             return result[0].Name; // for single role

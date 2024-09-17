@@ -32,32 +32,13 @@ export default function NewProject(props: {
   const [RelationshipManager, setRelationshipManager] = React.useState<
     SelectArray[]
   >([]);
-  const [DesignManager, setDesignManager] = React.useState<SelectArray[]>([]);
 
   const [clients, setClients] = React.useState<SelectArray[]>([]);
 
   const getClients = React.useRef(() => { });
   const getRM = React.useRef(() => { });
-  const getDM = React.useRef(() => { });
 
-  getDM.current = async () => {
-    setLoading(true);
-    const res = await getByRole(CurrentUser, Roles.Lawyer);
-    if (res.status !== 200) {
-      raiseToast(res.message, "error");
-    } else {
-      let data = res.data.map((item: any, index: number) => {
-        return {
-          id: index.toString(),
-          value: item.UserRecId,
-          // name: item.UserId,
-          name: item.UserName,
-        };
-      });
-      setDesignManager(data);
-    }
-    setLoading(false);
-  };
+ 
 
   getRM.current = async () => {
     setLoading(true);
@@ -167,7 +148,6 @@ export default function NewProject(props: {
     if (props.open || open) {
       getRM.current();
       getClients.current();
-      getDM.current();
     }
     setOpen(props.open !== undefined ? props.open : true);
   }, [props.open, open]);
@@ -270,17 +250,7 @@ export default function NewProject(props: {
             isInvalid={error.input === "Budget"}
             error={error.message}
           />
-          <InputSelect
-            label="Design Manager"
-            handleChange={(name: string, value: string) => {
-              setProject({ ...project, [name]: value });
-            }}
-            name="DesignManager"
-            isRequired={true}
-            isInvalid={error.input === "DesignManager"}
-            error={error.message}
-            selectArray={DesignManager}
-          />
+      
         </Stack>
       </LeftPopOverLayout>
     </>

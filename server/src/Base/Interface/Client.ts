@@ -8,7 +8,7 @@
  * @param Email: string
  * @param Password: string
  * @param Status: number
- * @param LawyerId: number
+ * @param Manager: number
  * @param CreatedBy: string 
  * @param ModifiedBy: string
  * @param CreatedDateTime: string
@@ -22,7 +22,7 @@ export interface ClientInterface {
     Password: string;
     Status: number;
     Phone: string;
-    LawyerId: number;
+    Manager: number;
     CustGroup?: number;
     CreatedBy: string;
     ModifiedBy: string;
@@ -52,7 +52,7 @@ export default interface ClientClass extends ClientInterface {
     paramPassword(Password: string): string;
     paramStatus(Status: number): number;
     paramCustGroup(CustGroup: number): number;
-    paramLawyerId(LawyerId: number): number;
+    paramManager(Manager: number): number;
     paramCreatedDateTime(CreatedDateTime: string): string;
     paramModifiedDateTime(ModifiedDateTime: string): string;
     paramRecId(RecId: number): number
@@ -67,7 +67,7 @@ export const EmptyClient: ClientInterface = {
     Phone: "",
     Password: "",
     Status: 0,
-    LawyerId: 0,
+    Manager: 0,
     CustGroup: 0,
     CreatedBy: "",
     ModifiedBy: "",

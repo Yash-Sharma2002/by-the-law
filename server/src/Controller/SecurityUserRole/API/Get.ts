@@ -103,7 +103,7 @@ class Get {
             
             const securityRole = new SecurityUserRole();
             await securityRole.connectDb();
-            let roles = await securityRole.getAllWithColumns(Collections.SecurityUser, { Name: req.query.Name as string },["UserId","UserName","UserRecId"]);
+            let roles = await securityRole.getAllWithColumns(Collections.SecurityUser, { Name: req.query.Name as string },{"UserId":1,"UserName":1,"UserRecId":1});
             securityRole.flush();
 
             let response = new ResponseClass(

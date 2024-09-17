@@ -18,11 +18,14 @@ enum Collections {
   ProjEmplSetup = "ProjEmplSetup",
   ProjTable = "ProjTable",
   Location = "Location",
+  UserGroup = "UserGroup",
 
 
 
   SecurityUser = "SecurityUser",
   SequenceFull = "SequenceFull",
+  CustTableWithName = "CustTableWithName",
+  ProjTableFull = "ProjTableFull",
 }
 
 export default Collections;

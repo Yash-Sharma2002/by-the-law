@@ -37,7 +37,7 @@ class CreateProject {
         ProjectsMessage.ProjectCreated
       );
       response.setData({
-        ...project.get(),
+        ... await project.getOne(Collections.ProjTableFull, { ProjId: project.paramProjId() }),
         RecId: project.paramRecId()
       });
 

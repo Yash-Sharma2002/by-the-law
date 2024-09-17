@@ -33,7 +33,7 @@ class GetProjects {
             project.paramRecId(parseInt(req.query.projTable as string));    
             await project.connectDb();
             await project.checkNotExists();
-            let projectDetails = await project.getOne(Collections.ProjTable, { RecId: project.paramRecId() });
+            let projectDetails = await project.getOne(Collections.ProjTableFull, { RecId: project.paramRecId() });
             let response = new ResponseClass(
                 ResStatus.Success,
                 CommonMessage.DataFound
@@ -66,7 +66,7 @@ class GetProjects {
 
             const project = new ProjTable();
             await project.connectDb();
-            let projectDetails = await project.getAll(Collections.ProjTable,{});
+            let projectDetails = await project.getAll(Collections.ProjTableFull,{});
             let response = new ResponseClass(
                 ResStatus.Success,
                 CommonMessage.DataFound
@@ -99,7 +99,7 @@ class GetProjects {
 
             const project = new ProjTable();
             await project.connectDb();
-            let projectDetails = await project.getAll(Collections.ProjTable, { ProjManagerId: req.query.user as string });
+            let projectDetails = await project.getAll(Collections.ProjTableFull, { ProjManagerId: req.query.user as string });
             let response = new ResponseClass(
                 ResStatus.Success,
                 CommonMessage.DataFound

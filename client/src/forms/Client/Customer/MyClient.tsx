@@ -25,7 +25,6 @@ export default function MyClients() {
   const [series, setSeries] = React.useState<any>([]);
   const [edit, setEdit] = React.useState(false);
   const [newSeries, setNewSeries] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
   const getClients = React.useRef(() => { });
 
@@ -108,7 +107,6 @@ export default function MyClients() {
               "Account Number",
               "Name",
               "Customer Group",
-              "Currency",
               "Blocked",
               "Phone",
               "Email",
@@ -128,9 +126,8 @@ export default function MyClients() {
                     data.Name,
                     data.CustGroup,
                     data.CustGroupName,
-                    data.Currency,
                     data.Blocked ? "Yes" : "No",
-                    data.PCode + data.Phone,
+                    data.Phone,
                     data.Email,
                     data.Manager,
                     data.ManagerRecId,
@@ -143,10 +140,10 @@ export default function MyClients() {
                 })) ||
               []
             }
-            hidden={[0, 3, 10]}
+            hidden={[0, 3, 9]}
             link={[
               { form: ModuleUrls.Customers, index: 1, key: 0 },
-              { form: ModuleUrls.Users, index: 9, key: 10 },
+              { form: ModuleUrls.Users, index: 8, key: 9 },
               { form: ModuleUrls.CustGroup, index: 4, key: 3 },
             ]}
           />

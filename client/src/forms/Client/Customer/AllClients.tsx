@@ -8,7 +8,7 @@ import TableComponent from "../../../components/common/table/TableComponent";
 import NewClient from "./NewClient";
 import { AppContext } from "../../../context/Context";
 import Roles from "../../../config/enum/Roles";
-import getAll from "../../../functions/SecurityRole/GetAll";
+import getAll from "../../../functions/custTable/getAll";
 import { ExcelContext } from "../../../context/ExcelContext";
 import deleteCustomer from "../../../functions/custTable/delete";
 import ModuleUrls from "../../../config/enum/Module";
@@ -26,7 +26,6 @@ export default function AllClients() {
   const [series, setSeries] = React.useState<any>([]);
   const [edit, setEdit] = React.useState(false);
   const [newSeries, setNewSeries] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
 
   const getClients = React.useRef(() => { });
@@ -112,7 +111,6 @@ export default function AllClients() {
               "Account Number",
               "Name",
               "Customer Group",
-              "Currency",
               "Blocked",
               "Phone",
               "Email",
@@ -132,9 +130,8 @@ export default function AllClients() {
                     data.Name,
                     data.CustGroup,
                     data.CustGroupName,
-                    data.Currency,
                     data.Blocked ? "Yes" : "No",
-                    data.PCode + data.Phone,
+                    data.Phone,
                     data.Email,
                     data.Manager,
                     data.ManagerRecId,
@@ -147,10 +144,10 @@ export default function AllClients() {
                 })) ||
               []
             }
-            hidden={[0, 3, 10]}
+            hidden={[0, 3, 9]}
             link={[
               { form: ModuleUrls.Customers, index: 1, key: 0 },
-              { form: ModuleUrls.Users, index: 9, key: 10 },
+              { form: ModuleUrls.Users, index: 8, key: 9 },
               { form: ModuleUrls.CustGroup, index: 4, key: 3 },
             ]}
           />

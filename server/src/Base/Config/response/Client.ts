@@ -9,7 +9,7 @@ enum ClientFieldsMessage {
     Email = "Email is required",
     Password = "Password is required",
     Status = "Status is required",
-    LawyerId = "Lawyer Id is required",
+    Manager = "Manager is required",
     CreatedBy = "Created By is required",
     ModifiedBy = "Modified By is required",
     CreatedDateTime = "Created Date Time is required",

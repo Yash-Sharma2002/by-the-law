@@ -31,7 +31,10 @@ class Get {
 
             const user = new User();
             await user.connectDb();
-            let data = await user.getWithColumns(Collections.User, { RecId: req.query.user as string }, ["RecId", "Id", "Name", "Email", "Language",  "Enabled", "CreatedBy", "CreatedDateTime","UserGroup"]);
+            let data = await user.getWithColumns(Collections.User, { RecId: Number(req.query.user) }, {
+                "RecId": 1, "Id": 1, "Name": 1,"UserGroup":1, "Email": 1, "Language": 1, "Enabled": 1, "CreatedBy": 1, "CreatedDateTime": 1
+            });
+
             user.flush();
 
             let response = new ResponseClass(ResStatus.Success, UserFieldsMessage.UserFound);
@@ -64,7 +67,9 @@ class Get {
 
             const user = new User();
             await user.connectDb();
-            let data = await user.getAllWithColumns(Collections.User, {}, ["RecId", "Id", "Name", "Email", "Language", "StartPage", "Enabled", "CreatedBy", "CreatedDateTime"]);
+            let data = await user.getAllWithColumns(Collections.User, {}, {
+                "RecId": 1, "Id": 1, "Name": 1,"UserGroup":1, "Email": 1, "Language": 1, "StartPage": 1, "Enabled": 1, "CreatedBy": 1, "CreatedDateTime": 1
+            });
             user.flush();
 
             let response = new ResponseClass(ResStatus.Success, UserFieldsMessage.UserFound);
@@ -96,7 +101,7 @@ class Get {
 
             const user = new User();
             await user.connectDb();
-            let data = await user.getWithColumns(Collections.User, { Id: req.query.Id as string }, ["RecId"]);
+            let data = await user.getWithColumns(Collections.User, { Id: req.query.Id as string }, {"RecId":1});
             user.flush();
 
             let response = new ResponseClass(ResStatus.Success, UserFieldsMessage.UserFound);
@@ -106,7 +111,7 @@ class Get {
             if (error instanceof ResponseClass) {
                 return res.status(error.getStatus()).send(error.getResponse());
             }
-            return res.status(ResStatus.InternalServerError).send(new ResponseClass(ResStatus.InternalServerError,CommonMessage.InternalServerError).getResponse());
+            return res.status(ResStatus.InternalServerError).send(new ResponseClass(ResStatus.InternalServerError, CommonMessage.InternalServerError).getResponse());
         }
     }
 

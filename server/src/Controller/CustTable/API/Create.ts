@@ -4,8 +4,6 @@ import ResponseClass from '../../../Base/Class/Response';
 import ClientFieldsMessage from '../../../Base/Config/response/Client';
 import CommonMessage from '../../../Base/Config/response/CommonMessage';
 import UserAccess from '../../../Base/Class/UserAccess';
-import CustTableRouter from '../Route/CustTableRouter';
-import Collections from '../../../Base/Config/collections';
 import Client from '../../../Base/Class/Client';
 
 

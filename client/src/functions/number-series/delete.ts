@@ -8,7 +8,7 @@ import { SequenceAPI } from "../../config/API/Sequence";
 async function deleteSeries(custTable: any, currentUser: { Id: string, Session: string, Token: string }) {
     try {
         const data = new URLSearchParams({
-            projTable: custTable,
+            sequence: custTable,
             Id: currentUser.Id,
             Session: currentUser.Session,
             Token: currentUser.Token

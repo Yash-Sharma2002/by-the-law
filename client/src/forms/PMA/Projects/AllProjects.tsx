@@ -38,7 +38,6 @@ export default function AllProjects() {
   });
   const [newSeries, setNewSeries] = React.useState(false);
   const [statusChange, setStatusChange] = React.useState(false);
-  const [search, setSearch] = React.useState("");
   const getProjects = React.useRef(() => {});
 
   getProjects.current = async () => {
@@ -161,7 +160,7 @@ export default function AllProjects() {
         let res = await deleteProject(projTable.RecId, CurrentUser);
 
         if (res.status === 200) {
-          raiseToast(projTable.AccountNum + " deleted successfully", "success");
+          raiseToast(projTable.ProjId + " deleted successfully", "success");
         } else {
           raiseToast(res.error, "error");
         }
@@ -195,11 +194,8 @@ export default function AllProjects() {
               "Customer",
               "Start Date",
               "End Date",
-              "Extended Date",
               "Status",
               "Relationship Manager",
-              // "Type",
-              "Category",
               "Created By",
               "Created Date",
               "Modified By",
@@ -218,11 +214,9 @@ export default function AllProjects() {
                     data.CustName,
                     new Date(data.StartDate).toDateString(),
                     new Date(data.EndDate).toDateString(),
-                    new Date(data.ExtendedDate).toDateString(),
                     ProjStatus[data.Status],
                     data.ProjManager,
                     data.ProjManagerRecId,
-                    // data.Type,
                     data.CreatedBy,
                     new Date(data.CreatedDateTime).toDateString(),
                     data.ModifiedBy,
@@ -231,12 +225,11 @@ export default function AllProjects() {
                 })) ||
               []
             }
-            hidden={[0, 5, 12, 14]}
+            hidden={[0, 5, 11]}
             link={[
               { form: ModuleUrls.Projects, index: 1, key: 0 },
               { form: ModuleUrls.Customers, index: 4, key: 5 },
-              { form: ModuleUrls.Users, index: 11, key: 12 }, // project manager
-              { form: ModuleUrls.Users, index: 13, key: 14 }, // design manager
+              { form: ModuleUrls.Users, index: 10, key: 11 }, // project manager
             ]}
           />
         </Layout>

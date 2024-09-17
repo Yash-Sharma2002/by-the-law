@@ -8,7 +8,7 @@
  * @param Email: string
  * @param Password: string
  * @param Status: number
- * @param LawyerId: number
+ * @param Manager: number
  * @param CreatedBy: string 
  * @param ModifiedBy: string
  * @param CreatedDateTime: string
@@ -22,7 +22,7 @@ export interface ClientInterface {
     Password: string;
     Phone: string;
     Status: number;
-    LawyerId: number;
+    Manager: number;
     CustGroup: number;
     CreatedBy: string;
     ModifiedBy: string;
@@ -39,7 +39,7 @@ export const EmptyClient: ClientInterface = {
     Password: "",
     Phone: "",
     Status: 0,
-    LawyerId: 0,
+    Manager: 0,
     CustGroup: 0,
     CreatedBy: "",
     ModifiedBy: "",

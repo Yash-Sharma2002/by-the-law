@@ -10,7 +10,6 @@ import { AppContext } from "../../../context/Context";
 import Roles from "../../../config/enum/Roles";
 import { ExcelContext } from "../../../context/ExcelContext";
 import deleteSeries from "../../../functions/number-series/delete";
-import ModuleUrls from "../../../config/enum/Module";
 import EditNumberSeries from "./EditNumberSeries";
 import { EmptySequence, SequenceInterface } from "../../../interface/Sequence";
 import Layout from "../../../components/ui/Layout";
@@ -25,7 +24,6 @@ export default function NumberSeries() {
   const [series, setSeries] = React.useState<SequenceInterface[]>([]);
   const [edit, setEdit] = React.useState(false);
   const [newSeries, setNewSeries] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
   const options: FormTopBarInterface[] = [
     {
@@ -144,7 +142,6 @@ export default function NumberSeries() {
               []
             }
             hidden={[0]}
-            link={[{ form: ModuleUrls.NumberSequences, index: 1, key: 0 }]}
           />
         </Layout>
         <NewNumberSeries

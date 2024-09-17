@@ -40,9 +40,7 @@ export default function NewClient(props: NewProps) {
     raiseToast,
     setLoading,
   } = React.useContext(AppContext);
-  const [RelationshipManager, setRelationshipManager] = React.useState<
-    SelectArray[]
-  >([]);
+  const [RelationshipManager, setRelationshipManager] = React.useState<SelectArray[]>([]);
   const [CustGroup, setCustGroup] = React.useState<SelectArray[]>([]);
 
   const getRM = React.useRef(() => { });
@@ -333,7 +331,7 @@ export default function NewClient(props: NewProps) {
             isInvalid={error.input === "Manager"}
             error={error.message}
             selectArray={RelationshipManager}
-            focus="createAddress"
+            focus="Password"
           />
 
           <InputPassword
@@ -343,7 +341,7 @@ export default function NewClient(props: NewProps) {
             isRequired={true}
             isInvalid={error.input === "Password"}
             error={error.message}
-            focus="Phone"
+            focus="createAddress"
           />
 
           <FormSwitch

@@ -19,15 +19,11 @@ type Props = {
   setData?: any;
   UserId?: string;
   Role?: string;
-  topBar:boolean;
+  topBar: boolean;
 }
 
-export default function RolesList(props:Props ) {
-  const {
-    setLoading,
-    raiseToast,
-    user: CurrentUser,
-  } = React.useContext(AppContext);
+export default function RolesList(props: Props) {
+  const { setLoading, raiseToast,user: CurrentUser } = React.useContext(AppContext);
   const { selected } = React.useContext(ExcelContext);
   const [newSeries, setNewSeries] = React.useState(false);
 
@@ -37,7 +33,7 @@ export default function RolesList(props:Props ) {
       Icon: MdOutlineEdit,
       roles: [Roles.Admin],
       type: DisplayType.Function,
-      Object() {},
+      Object() { },
     },
     {
       name: "New",
@@ -66,7 +62,7 @@ export default function RolesList(props:Props ) {
     try {
       for (let i = 0; i < selected.length; i++) {
         let custTable = props.data[selected[i]];
-        let res = await deleteSecurityUserRole(CurrentUser,custTable.RecId);
+        let res = await deleteSecurityUserRole(CurrentUser, custTable.RecId);
 
         if (res.status === 200) {
           raiseToast("Assigned Role deleted successfully", "success");
@@ -88,28 +84,28 @@ export default function RolesList(props:Props ) {
         <DisplayTitle title="Roles" />
         {
           props.topBar &&
-          <FormTopBar options={options} refreh={() => {}} />
+          <FormTopBar options={options} refreh={() => { }} />
         }
         <div className="border-t p-4">
-            <TableComponent
-              head={["User Id", "Name", "Description", "Created By"]}
-              body={
-                (props.data.length > 0 &&
-                  props.data.map((item: any) => {
-                    return [
-                      item.RecId,
-                      item.UserId,
-                      item.Name,
-                      item.Description,
-                      item.CreatedBy,
-                    ];
-                  })) ||
-                []
-              }
-              hidden={[0]}
-              link={[{ form: ModuleUrls.Users, index: 1, key: 0 }]}
-            />
-          </div>
+          <TableComponent
+            head={["User Id", "Name", "Description", "Created By"]}
+            body={
+              (props.data.length > 0 &&
+                props.data.map((item: any) => {
+                  return [
+                    item.RecId,
+                    item.UserId,
+                    item.Name,
+                    item.Description,
+                    item.CreatedBy,
+                  ];
+                })) ||
+              []
+            }
+            hidden={[0]}
+            link={[{ form: ModuleUrls.Users, index: 1, key: 0 }]}
+          />
+        </div>
       </div>
       <AddNew
         open={newSeries}

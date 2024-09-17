@@ -52,7 +52,7 @@ export default function PhoneInput(props: {
       >
         <FormLabel>{props.label}</FormLabel>
         <InputGroup>
-          <InputLeftAddon>+91</InputLeftAddon>
+          <InputLeftAddon>+1</InputLeftAddon>
           <Input
             type="tel"
             name={props.name}

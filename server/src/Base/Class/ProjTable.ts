@@ -304,7 +304,7 @@ class ProjTable extends Start implements ProjTableClass {
 
         if (this.CustAccount) {
             const custTable = await new Client().getCustomerByRecId(this.CustAccount);
-            if (!this.ProjManager) this.ProjManager = custTable.LawyerId;
+            if (!this.ProjManager) this.ProjManager = custTable.Manager;
             // dlv location will be based on the type of the project on future  
             // if (!this.DlvLocation) this.DlvLocation = (await new Location().getPrimaryLocation(this.CustAccount, await new SysTableId().getTableId(Collections.CustTable))).RecId || 0;
         }
@@ -327,7 +327,7 @@ class ProjTable extends Start implements ProjTableClass {
     async insert() {
         await this.modified();
         this.CreatedDateTime = this.ModifiedDateTime;
-        this.RecId = (await this.insertOneWithOutput(Collections.ProjTable, this.get(), {"RecId":1})).RecId
+        await this.insertOne(Collections.ProjTable, this.get());
     }
 
     /**

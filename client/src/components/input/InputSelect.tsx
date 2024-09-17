@@ -77,7 +77,7 @@ export default function InputSelect(props: {
   const start = React.useCallback(() => {
     setFilteredCountries(props.selectArray);
     let newDef = props.selectArray.find(
-      (data) => data.value === def
+      (data) => data.value?.toString() === def
     );
     if (newDef) {
       inputRef.current!.value = newDef.name;

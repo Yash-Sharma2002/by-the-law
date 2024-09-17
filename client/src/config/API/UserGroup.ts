@@ -9,6 +9,7 @@ export const UserGroupAPI = {
     Update: ResultsUrl + '/update',
     Delete: ResultsUrl + '/delete?',
     GetOne: ResultsUrl + '/?',
+    GetByName: ResultsUrl + '/name?',
     GetAll: ResultsUrl + '/all?',
     GetByUser: ResultsUrl + '/byUser?',
 }
